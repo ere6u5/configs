@@ -2,6 +2,7 @@
 vim.opt.listchars = { trail = '•' }
 vim.opt.tabstop = 4
 vim.opt.number = true
+vim.opt.relativenumber = true
 
 -- Additional
 vim.opt.shiftwidth = 4

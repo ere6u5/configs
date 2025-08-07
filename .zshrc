@@ -14,8 +14,8 @@ esac
 
 # History configuration
 HISTFILE=~/.zsh_history
-HISTSIZE=100000
-SAVEHIST=100000
+HISTSIZE=10000
+SAVEHIST=10000
 setopt hist_ignore_all_dups
 setopt append_history
 setopt extended_history
@@ -45,7 +45,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 # Prompt with lilac username
 autoload -U colors && colors
-PROMPT='%F{147}%n@%m:%f%~%f$ '
+PROMPT='%F{147}ere6u5%f $ '
 
 # Window title
 case "$TERM" in
@@ -57,7 +57,15 @@ esac
 # Load additional aliases
 [[ -f ~/.bash_aliases ]] && source ~/.bash_aliases
 
-# Auto-start tmux (only in interactive shells, no nested tmux)
+# Exports
+export PATH="$HOME/go/bin:$PATH"
+export PATH=$PATH:$HOME/.bearer/bin
+
+# Autostart
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  exec tmux new-session -A -s main  # Attach to 'main' or create it
+  tmux new-session -s main
 fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
